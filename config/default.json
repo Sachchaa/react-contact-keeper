@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://sachin-developer:Password!234@react-contact-keeper.otawb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret": "jwtsecret"
+}
