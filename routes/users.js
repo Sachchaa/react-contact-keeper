@@ -11,9 +11,10 @@ const { validationResult, check } = require('express-validator');
 // @desc        Register a user
 // @access      Public
 
-router.post('/',
+router.post(
+    '/',
     [
-        check('name', 'Please add name').not().isEmpty(),
+        check('name', 'Please add a name').not().isEmpty(),
         check('email', 'Please add a valid email').isEmail(),
         check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
 
