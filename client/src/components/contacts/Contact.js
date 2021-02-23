@@ -9,7 +9,7 @@ const Contact = ({ contact }) => {
     return (
         <Card
             bg='Light'
-            style={{ width: '18rem' }}
+            style={{ width: '30rem' }}
             className="mb-2"
             border={type === 'professional' ? 'success' : 'info'}
         >
