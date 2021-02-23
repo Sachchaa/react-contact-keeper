@@ -1,10 +1,24 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Form, Col, Row, Button } from 'react-bootstrap'
 import ContactContext from '../../context/contact/contactContext'
 
 const ContactForm = () => {
 
-    const contactContex = useContext(ContactContext)
+    const contactContext = useContext(ContactContext)
+    const { addContact, updateContact, current, clearCurrentContact } = contactContext
+
+    useEffect(() => {
+        if (current !== null) {
+            setContact(current)
+        } else {
+            setContact({
+                name: '',
+                email: '',
+                phone: '',
+                type: 'personal'
+            })
+        }
+    }, [contactContext, current])
 
     const [contact, setContact] = useState({
         name: '',
@@ -23,20 +37,23 @@ const ContactForm = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        contactContex.addContact(contact)
-        setContact({
-            name: '',
-            email: '',
-            phone: '',
-            type: 'personal'
-        })
+        if (current == null) {
+            addContact(contact)
+        } else {
+            updateContact(contact)
+        }
+        clearAll()
+    }
+
+    const clearAll = () => {
+        clearCurrentContact()
     }
 
     return (
 
         <>
             <Form onSubmit={onSubmit}>
-                <h4>Add Contact</h4>
+                <h4>{current ? 'Update Contact' : 'Add Contact'}</h4>
                 <Form.Group as={Row}>
                     <Col sm={10}>
                         <Form.Control
@@ -80,24 +97,30 @@ const ContactForm = () => {
                                 type="radio"
                                 label="Personal"
                                 name="type"
-                                checked={type === 'personal'}
                                 onChange={onChange}
+                                checked={type === 'personal'}
                             />
                             <Form.Check
                                 type="radio"
                                 label="Professional"
                                 name="type"
-                                checked={type === 'professional'}
                                 onChange={onChange}
+                                checked={type === 'professional'}
                             />
                         </Col>
                     </Form.Group>
                 </fieldset>
                 <Form.Group as={Row}>
                     <Col sm={{ span: 10 }}>
-                        <Button type="submit" variant="info" block>Add Contact</Button>
+                        <Button type="submit" variant="info" block>{current ? 'Update Contact' : 'Add Contact'}</Button>
                     </Col>
                 </Form.Group>
+                {current &&
+                    <Form.Group as={Row}>
+                        <Col sm={{ span: 10 }}>
+                            <Button type="submit" variant="info" block onClick={clearAll}>Clear</Button>
+                        </Col>
+                    </Form.Group>}
             </Form>
         </>
 

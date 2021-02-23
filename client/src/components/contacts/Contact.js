@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { FaEnvelopeOpen, FaPhone } from 'react-icons/fa'
 import PropTypes from 'prop-types'
+import ContactContext from '../../context/contact/contactContext'
 
 const Contact = ({ contact }) => {
+
+    const contactContext = useContext(ContactContext)
+    const { deleteContact, setCurrentContact, clearCurrentContact } = contactContext
     const { id, name, email, phone, type } = contact
+
+    const onDelete = () => {
+        deleteContact(id)
+        clearCurrentContact()
+    }
 
     return (
         <Card
@@ -28,8 +37,8 @@ const Contact = ({ contact }) => {
                             </li>
                         )}
                         <p>
-                            <Button variant="outline-dark">Edit</Button> {' '}
-                            <Button variant="outline-danger">Delete</Button>
+                            <Button variant="outline-dark" onClick={() => setCurrentContact(contact)}>Edit</Button> {' '}
+                            <Button variant="outline-danger" onClick={onDelete}>Delete</Button>
                         </p>
                     </ul>
                 </Card.Text>
