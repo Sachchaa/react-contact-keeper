@@ -155,6 +155,11 @@ p {
   }
   .nav-links li {
     margin-right: 2rem;
+    text-transform: capitalize;
+    color: #679490;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s linear;
+    padding: 0.5rem 0;
   }
   .nav-links a {
     text-transform: capitalize;

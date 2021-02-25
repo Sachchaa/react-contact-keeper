@@ -3,8 +3,6 @@ import { Card, Form, Button, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AlertContext from '../../context/alert/alertContext'
 import AuthContext from '../../context/auth/authContext'
-import PropTypes from 'prop-types'
-
 
 const Register = (props) => {
     const alertContext = useContext(AlertContext)
@@ -86,10 +84,6 @@ const Register = (props) => {
             </Container>
         </>
     )
-}
-
-Register.propTypes = {
-
 }
 
 export default Register

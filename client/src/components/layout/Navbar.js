@@ -1,9 +1,39 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { FaAlignCenter } from 'react-icons/fa'
+import { FaAlignCenter, FaSignOutAlt, FaRegUserCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import AuthContext from '../../context/auth/authContext'
 
 const NavbarComponent = ({ title }) => {
+    const authContext = useContext(AuthContext)
+
+    const { isAuthenticated, logout, user } = authContext
+
+    const onLogout = () => {
+        logout()
+    }
+
+    const authLinks = (
+        <>
+            <li><FaRegUserCircle /> {' '} Hello {user && user.name}</li>
+            <li>
+                <a href='#!' onClick={onLogout}>
+                    <FaSignOutAlt />
+                </a>
+            </li>
+        </>
+    )
+
+    const guestLinks = (
+        <>
+            <li>
+                <Link to='/login'>Login</Link>
+            </li>
+            <li>
+                <Link to='/register'>Register</Link>
+            </li>
+        </>
+    )
     return (
         <>
             <nav className='nav-bar navbar-expand-lg'>
@@ -17,18 +47,7 @@ const NavbarComponent = ({ title }) => {
                         </button>
                     </div>
                     <ul className='nav-links'>
-                        <li>
-                            <Link to='/'>Home</Link>
-                        </li>
-                        <li>
-                            <Link to='/about'>About</Link>
-                        </li>
-                        <li>
-                            <Link to='/login'>Login</Link>
-                        </li>
-                        <li>
-                            <Link to='/register'>Register</Link>
-                        </li>
+                        {isAuthenticated ? authLinks : guestLinks}
                     </ul>
                 </div>
             </nav>

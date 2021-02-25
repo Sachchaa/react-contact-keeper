@@ -1,10 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Card, Form, Button, Alert, Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import AlertContext from '../../context/alert/alertContext'
+import AuthContext from '../../context/auth/authContext'
 
 
 const Login = (props) => {
+    const alertContext = useContext(AlertContext)
+    const authContext = useContext(AuthContext)
+
+    const { setAlert } = alertContext
+    const { login, error, clearErrors, isAuthenticated } = authContext
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            props.history.push('/')
+        }
+
+        if (error === 'Invalid Credentials') {
+            setAlert(error, 'danger')
+            clearErrors()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [error, isAuthenticated, props.history])
+
     const [user, setUser] = useState({
         email: '',
         password: ''
@@ -18,7 +36,10 @@ const Login = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log('User Login')
+        login({
+            email,
+            password
+        })
     }
 
     return (
@@ -45,8 +66,5 @@ const Login = (props) => {
     )
 }
 
-Login.propTypes = {
-
-}
 
 export default Login

@@ -62,6 +62,7 @@ const ContactForm = () => {
                             name='name'
                             value={name}
                             onChange={onChange}
+                            required
                         />
                     </Col>
                 </Form.Group>

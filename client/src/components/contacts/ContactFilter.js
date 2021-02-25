@@ -22,7 +22,7 @@ const ContactFilter = () => {
         }
     }
     return (
-        <Form >
+        <Form style={{ width: '30rem' }}>
             <Form.Group>
                 <Form.Control
                     type="text"
