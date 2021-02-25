@@ -1,14 +1,29 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Card, Form, Button, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AlertContext from '../../context/alert/alertContext'
+import AuthContext from '../../context/auth/authContext'
 import PropTypes from 'prop-types'
 
 
 const Register = (props) => {
     const alertContext = useContext(AlertContext)
+    const authContext = useContext(AuthContext)
 
     const { setAlert } = alertContext
+    const { register, error, clearErrors, isAuthenticated } = authContext
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            props.history.push('/')
+        }
+
+        if (error === 'User already exists') {
+            setAlert(error, 'danger')
+            clearErrors()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [error, isAuthenticated, props.history])
 
     const [user, setUser] = useState({
         name: '',
@@ -29,7 +44,11 @@ const Register = (props) => {
             setAlert('Passwords do not match!', 'danger')
         }
         else {
-            console.log('User Registered')
+            register({
+                name,
+                email,
+                password
+            })
         }
 
     }
