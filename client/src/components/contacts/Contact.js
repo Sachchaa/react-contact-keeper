@@ -7,7 +7,9 @@ import ContactContext from '../../context/contact/contactContext'
 const Contact = ({ contact }) => {
 
     const contactContext = useContext(ContactContext)
+
     const { deleteContact, setCurrentContact, clearCurrentContact } = contactContext
+
     const { _id, name, email, phone, type } = contact
 
     const onDelete = () => {
