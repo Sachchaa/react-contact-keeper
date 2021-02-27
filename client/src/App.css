@@ -52,6 +52,10 @@ p {
   margin-right: auto;
 }
 
+.card h4{
+  font-size: 1rem;
+}
+
 /* Grid */
 .grid-2 {
   display: grid;

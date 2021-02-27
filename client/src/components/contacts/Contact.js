@@ -24,7 +24,7 @@ const Contact = ({ contact }) => {
             className="mb-2"
             border={type === 'professional' ? 'success' : 'info'}
         >
-            <Card.Header><h4 className='text-left mb-4'>{name}</h4> {' - '} {type.charAt(0).toUpperCase() + type.slice(1)}</Card.Header>
+            <Card.Header><h4 className='text-left font-weight-bold'>{name}</h4> {' - '} {type.charAt(0).toUpperCase() + type.slice(1)}</Card.Header>
             <Card.Body>
                 <Card.Text>
                     <ul className='list'>
