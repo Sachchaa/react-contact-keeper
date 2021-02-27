@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { FaAlignCenter, FaSignOutAlt, FaRegUserCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -17,7 +17,7 @@ const NavbarComponent = ({ title }) => {
         <>
             <li><FaRegUserCircle /> {' '} Hello {user && user.name}</li>
             <li>
-                <a href='#!' onClick={onLogout}>
+                <a onClick={onLogout} href='#!'>
                     <FaSignOutAlt />
                 </a>
             </li>

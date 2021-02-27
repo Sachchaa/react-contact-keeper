@@ -60,19 +60,49 @@ const Register = (props) => {
                         <Form onSubmit={onSubmit}>
                             <Form.Group id='name'>
                                 <Form.Label>Name</Form.Label>
-                                <Form.Control type='text' name='name' value={name} onChange={onChnage} required></Form.Control>
+                                <Form.Control
+                                    type='text'
+                                    name='name'
+                                    value={name}
+                                    onChange={onChnage}
+                                    required
+                                >
+                                </Form.Control>
                             </Form.Group>
                             <Form.Group id='email'>
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type='email' name='email' value={email} onChange={onChnage} required></Form.Control>
+                                <Form.Control
+                                    type='email'
+                                    name='email'
+                                    value={email}
+                                    onChange={onChnage}
+                                    required
+                                >
+                                </Form.Control>
                             </Form.Group>
                             <Form.Group id='password'>
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type='password' name='password' value={password} onChange={onChnage} minLength='6' required></Form.Control>
+                                <Form.Control
+                                    type='password'
+                                    name='password'
+                                    value={password}
+                                    onChange={onChnage}
+                                    minLength='6'
+                                    required
+                                >
+                                </Form.Control>
                             </Form.Group>
                             <Form.Group id='password-confirm'>
                                 <Form.Label>Password Confirmation</Form.Label>
-                                <Form.Control type='password' name='password2' value={password2} onChange={onChnage} minLength='6' required></Form.Control>
+                                <Form.Control
+                                    type='password'
+                                    name='password2'
+                                    value={password2}
+                                    onChange={onChnage}
+                                    minLength='6'
+                                    required
+                                >
+                                </Form.Control>
                             </Form.Group>
                             <Button className='w-100' type='submit'>Sign Up</Button>
                         </Form>

@@ -10,7 +10,7 @@ const Alerts = () => {
         alertContext.alerts.length > 0 &&
         alertContext.alerts.map(alert => (
             <Alert key={alert.id} variant={alert.type}>
-                <i><FaInfoCircle /> </i>{alert.msg}
+                <FaInfoCircle /> {alert.msg}
             </Alert>
         ))
     )

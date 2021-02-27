@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Card, Form, Button, Alert, Container } from 'react-bootstrap'
+import { Card, Form, Button, Container } from 'react-bootstrap'
 import AlertContext from '../../context/alert/alertContext'
 import AuthContext from '../../context/auth/authContext'
 
@@ -20,7 +20,7 @@ const Login = (props) => {
             setAlert(error, 'danger')
             clearErrors()
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line
     }, [error, isAuthenticated, props.history])
 
     const [user, setUser] = useState({
@@ -51,11 +51,25 @@ const Login = (props) => {
                         <Form onSubmit={onSubmit}>
                             <Form.Group id='email'>
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type='email' name='email' value={email} onChange={onChnage} required></Form.Control>
+                                <Form.Control
+                                    type='email'
+                                    name='email'
+                                    value={email}
+                                    onChange={onChnage}
+                                    required
+                                >
+                                </Form.Control>
                             </Form.Group>
                             <Form.Group id='password'>
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type='password' name='password' value={password} onChange={onChnage} required></Form.Control>
+                                <Form.Control
+                                    type='password'
+                                    name='password'
+                                    value={password}
+                                    onChange={onChnage}
+                                    required
+                                >
+                                </Form.Control>
                             </Form.Group>
                             <Button className='w-100' type='submit'>Log In</Button>
                         </Form>

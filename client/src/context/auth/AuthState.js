@@ -16,10 +16,15 @@ import {
 } from '../types'
 
 const AuthState = (props) => {
+
+    if (localStorage.token) {
+        setAuthToken(localStorage.token)
+    }
+
     const initialState = {
         token: localStorage.getItem('token'),
-        isAuthenticated: null,
-        loading: true,
+        isAuthenticated: false,
+        loading: false,
         user: null,
         error: null
     }
@@ -28,10 +33,7 @@ const AuthState = (props) => {
 
     //Load user
     const loadUser = async () => {
-        if (localStorage.token) {
-            setAuthToken(localStorage.token)
-        }
-
+        setAuthToken(localStorage.token)
         try {
             const res = await axios.get('/api/auth')
 
@@ -53,7 +55,7 @@ const AuthState = (props) => {
         }
 
         try {
-            const res = await axios.post('api/users', formData, config)
+            const res = await axios.post('/api/users', formData, config)
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data
@@ -77,7 +79,7 @@ const AuthState = (props) => {
         }
 
         try {
-            const res = await axios.post('api/auth', formData, config)
+            const res = await axios.post('/api/auth', formData, config)
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
