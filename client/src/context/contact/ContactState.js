@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react'
 import axios from 'axios'
-import { v4 as uuidv4 } from 'uuid';
 import ContactContext from './contactContext'
 import contactReducer from './contactReducer'
 import {
@@ -66,8 +65,41 @@ const ContactState = (props) => {
     }
 
     //Delete contact
-    const deleteContact = (id) => {
-        dispatch({ type: DELETE_CONTACT, payload: id })
+    const deleteContact = async (id) => {
+        try {
+            await axios.delete(`/api/contacts/${id}`)
+            dispatch({
+                type: DELETE_CONTACT,
+                payload: id
+            })
+        } catch (err) {
+            dispatch({
+                type: ERROR_CONTACT,
+                payload: err.response.msg
+            })
+        }
+
+    }
+
+    //Update contact
+    const updateContact = async (contact) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        try {
+            const res = await axios.put(`/api/contacts/${contact._id}`, contact, config)
+            dispatch({
+                type: UPDATE_CONTACT,
+                payload: res.data
+            })
+        } catch (err) {
+            dispatch({
+                type: ERROR_CONTACT,
+                payload: err.response.msg
+            })
+        }
     }
 
     const clearContacts = () => {
@@ -82,11 +114,6 @@ const ContactState = (props) => {
     //Clear currenr contact
     const clearCurrentContact = () => {
         dispatch({ type: CLEAR_CURRENT })
-    }
-
-    //Update contact
-    const updateContact = (contact) => {
-        dispatch({ type: UPDATE_CONTACT, payload: contact })
     }
 
     //Filter contact

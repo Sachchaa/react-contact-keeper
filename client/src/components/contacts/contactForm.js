@@ -1,11 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Form, Col, Row, Button } from 'react-bootstrap'
 import ContactContext from '../../context/contact/contactContext'
+import AlertContext from '../../context/alert/alertContext'
 
 const ContactForm = () => {
 
     const contactContext = useContext(ContactContext)
+    const alertContext = useContext(AlertContext)
+
     const { addContact, updateContact, current, clearCurrentContact } = contactContext
+    const { setAlert } = alertContext
 
     useEffect(() => {
         if (current !== null) {
@@ -39,8 +43,10 @@ const ContactForm = () => {
         e.preventDefault()
         if (current == null) {
             addContact(contact)
+            setAlert('Contact Added', 'success')
         } else {
             updateContact(contact)
+            setAlert('Contact Updated', 'success')
         }
         clearAll()
     }
