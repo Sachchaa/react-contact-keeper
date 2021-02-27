@@ -17,9 +17,7 @@ import {
 
 const AuthState = (props) => {
 
-    if (localStorage.token) {
-        setAuthToken(localStorage.token)
-    }
+    setAuthToken(localStorage.token)
 
     const initialState = {
         token: localStorage.getItem('token'),

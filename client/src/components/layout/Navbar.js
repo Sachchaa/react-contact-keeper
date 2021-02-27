@@ -3,11 +3,20 @@ import PropTypes from 'prop-types'
 import { FaAlignCenter, FaSignOutAlt, FaRegUserCircle } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import AuthContext from '../../context/auth/authContext'
+import ContactContext from '../../context/contact/contactContext'
 
 const NavbarComponent = ({ title }) => {
     const authContext = useContext(AuthContext)
+    const contactContext = useContext(ContactContext)
 
-    const { isAuthenticated, logout, user } = authContext
+    const { isAuthenticated, logout, user, loadUser } = authContext
+    const { clearContacts } = contactContext
+
+    useEffect(() => {
+        loadUser()
+        clearContacts()
+        // eslint-disable-next-line
+    }, [])
 
     const onLogout = () => {
         logout()
@@ -41,6 +50,7 @@ const NavbarComponent = ({ title }) => {
                     <div className='nav-header'>
                         <h3>
                             {title}
+
                         </h3>
                         <button type='button' className='toggle-btn'>
                             <FaAlignCenter />

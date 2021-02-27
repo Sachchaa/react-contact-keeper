@@ -98,15 +98,17 @@ const ContactForm = () => {
                                 type="radio"
                                 label="Personal"
                                 name="type"
-                                onChange={onChange}
+                                value='personal'
                                 checked={type === 'personal'}
+                                onChange={onChange}
                             />
                             <Form.Check
                                 type="radio"
                                 label="Professional"
                                 name="type"
-                                onChange={onChange}
+                                value='professional'
                                 checked={type === 'professional'}
+                                onChange={onChange}
                             />
                         </Col>
                     </Form.Group>

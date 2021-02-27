@@ -61,6 +61,7 @@ const Register = (props) => {
                             <Form.Group id='name'>
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control
+                                    id='name'
                                     type='text'
                                     name='name'
                                     value={name}
@@ -72,6 +73,7 @@ const Register = (props) => {
                             <Form.Group id='email'>
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control
+                                    id='email'
                                     type='email'
                                     name='email'
                                     value={email}
@@ -83,6 +85,7 @@ const Register = (props) => {
                             <Form.Group id='password'>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control
+                                    id='password'
                                     type='password'
                                     name='password'
                                     value={password}
@@ -95,6 +98,7 @@ const Register = (props) => {
                             <Form.Group id='password-confirm'>
                                 <Form.Label>Password Confirmation</Form.Label>
                                 <Form.Control
+                                    id='password2'
                                     type='password'
                                     name='password2'
                                     value={password2}

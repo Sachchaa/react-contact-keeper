@@ -1,26 +1,34 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import ContactContext from '../../context/contact/contactContext'
 import Contact from './Contact'
+import SpinnerComponent from '../layout/Spinner'
 
 const Contacts = () => {
     const contactContext = useContext(ContactContext)
 
-    const { contacts, filtered } = contactContext
+    const { contacts, filtered, getContacts, loading } = contactContext
 
-    if (contacts.length === 0) {
-        return <h4>You can add contacts</h4>
+    useEffect(() => {
+        getContacts()
+        // eslint-disable-next-line
+    }, [])
+
+    if (contacts !== null && contacts.length === 0 && !loading) {
+        return <p>Please add contacts...</p>
     }
 
     return (
         <>
-            {filtered !== null ?
-                filtered.map(contact => (
-                    <Contact key={contact.id} contact={contact} />
-                )) : contacts.map(contact => (
-                    <Contact key={contact.id} contact={contact} />
-                ))
-
+            {contacts !== null && !loading ? (
+                filtered !== null ?
+                    filtered.map(contact => (
+                        <Contact key={contact._id} contact={contact} />
+                    )) : contacts.map(contact => (
+                        <Contact key={contact._id} contact={contact} />
+                    ))
+            ) : <SpinnerComponent />
             }
+
         </>
     )
 }
