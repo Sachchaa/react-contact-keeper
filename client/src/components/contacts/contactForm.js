@@ -59,7 +59,7 @@ const ContactForm = () => {
 
         <>
             <Form onSubmit={onSubmit}>
-                <h4>{current ? 'Update Contact' : 'Add Contact'}</h4>
+                <h2 className='text-left mb-4'>{current ? 'Update Contact' : 'Add Contact'}</h2>
                 <Form.Group as={Row}>
                     <Col sm={10}>
                         <Form.Control
